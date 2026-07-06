@@ -1,0 +1,265 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Jordan Christopher Lyles - Medication Dosage Adjustment System Using Fuzzy Logic</title><style>
+@page { size: Letter; margin: 0.55in; }
+:root{--navy:#071427;--blue:#1d4ed8;--cyan:#06b6d4;--slate:#334155;--muted:#64748b;--line:#dbeafe;--soft:#eff6ff;--panel:#f8fafc;--green:#059669;--orange:#d97706}
+*{box-sizing:border-box} body{margin:0;font-family:Inter,Arial,Helvetica,sans-serif;color:#0f172a;background:white;line-height:1.52;font-size:10.2pt} a{color:#1d4ed8} h1,h2,h3{line-height:1.12;margin:0} h1{font-size:35pt;letter-spacing:-.04em} h2{font-size:20pt;margin:20pt 0 9pt;color:#0f2a5f;border-bottom:2px solid #bfdbfe;padding-bottom:6pt} h3{font-size:13.2pt;margin:13pt 0 5pt;color:#0f172a} p{margin:0 0 8pt}.small{font-size:8.2pt;color:#64748b}.kicker{text-transform:uppercase;letter-spacing:.15em;color:#7dd3fc;font-weight:900;font-size:8.5pt}.cover{height:9.35in;border-radius:26pt;color:white;background:radial-gradient(circle at 80% 15%,rgba(14,165,233,.9),transparent 30%),linear-gradient(135deg,#020617,#0f2a5f 58%,#0891b2);padding:52pt;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 20pt 50pt rgba(15,23,42,.22)}.subtitle{font-size:15pt;max-width:570pt;color:#e0f2fe;margin-top:14pt}.byline{background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.26);padding:16pt;border-radius:18pt}.chips span{display:inline-block;margin:8pt 5pt 0 0;padding:6pt 9pt;border-radius:999pt;border:1px solid rgba(255,255,255,.35);font-weight:800;color:#e0f2fe}.pagebreak{break-before:page}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12pt}.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10pt}.card,.source-card{border:1px solid #dbeafe;background:#f8fafc;border-radius:16pt;padding:13pt;margin-bottom:10pt}.source-card{background:linear-gradient(180deg,#ffffff,#eff6ff);break-inside:avoid}.metric{background:#f8fafc;border:1px solid #dbeafe;border-radius:16pt;padding:12pt}.metric b{display:block;font-size:18pt;color:#1d4ed8}.callout{border-left:5pt solid #2563eb;background:#eff6ff;padding:12pt 14pt;border-radius:12pt;margin:12pt 0}.warning{border-left-color:#d97706;background:#fff7ed}.good{border-left-color:#059669;background:#ecfdf5}table{width:100%;border-collapse:collapse;margin:8pt 0 14pt;font-size:8.7pt}th{background:#dbeafe;color:#1e3a8a;text-align:left;font-weight:900}th,td{border:1px solid #cbd5e1;padding:6pt;vertical-align:top}.wide-table{font-size:6.7pt}.exclusion-table{font-size:7.3pt}.figure{width:100%;border:1px solid #e2e8f0;border-radius:16pt;margin:5pt 0 8pt}.equation{font-family:Consolas,'Courier New',monospace;background:#020617;color:#e0f2fe;border-radius:14pt;padding:12pt;margin:8pt 0}.flow{display:grid;grid-template-columns:repeat(5,1fr);gap:7pt;margin:12pt 0}.flow div{background:#eff6ff;border:1px solid #bfdbfe;border-radius:12pt;padding:8pt;text-align:center;font-weight:800;color:#1e3a8a}.code{font-family:Consolas,'Courier New',monospace;background:#020617;color:#dbeafe;border-radius:12pt;padding:10pt;white-space:pre-wrap;font-size:6.1pt;line-height:1.22;overflow-wrap:anywhere}.code-mini{font-size:5pt;line-height:1.15}.toc a{display:block;text-decoration:none;border-bottom:1px solid #e2e8f0;padding:6pt 0;color:#0f172a}.tag{display:inline-block;border-radius:999pt;background:#e0f2fe;color:#075985;padding:3pt 7pt;font-weight:800;margin:2pt}.footer-note{position:fixed;bottom:.18in;left:.55in;right:.55in;color:#64748b;font-size:7pt;border-top:1px solid #e2e8f0;padding-top:4pt}.compact li{margin-bottom:3pt}li{margin-bottom:5pt}.two-col{columns:2;column-gap:18pt}.mini-head{font-size:9pt;text-transform:uppercase;letter-spacing:.12em;font-weight:900;color:#2563eb}.avoid{break-inside:avoid}.center{text-align:center}.pill{display:inline-block;background:#0f172a;color:white;border-radius:999pt;padding:4pt 8pt;font-size:8pt;font-weight:900}
+</style></head><body>
+<section class="cover"><div><div class="kicker">Biomedical Engineering Computational Portfolio</div><h1>Medication Dosage Adjustment System Using Fuzzy Logic</h1><p class="subtitle">An expanded technical report, code appendix, and GitHub Pages project by <b>Jordan Christopher Lyles</b> on fuzzy inference, medication allocation, exclusion criteria, and explainable clinical decision support.</p><div class="chips"><span>Jordan Christopher Lyles</span><span>Python</span><span>scikit-fuzzy</span><span>Precision Dosing</span><span>Clinical Decision Support</span><span>Wolfram Language</span></div></div><div class="byline"><b>Jordan Christopher Lyles</b><br>Medication Allocation System Using Fuzzy Logic<br>Academic prototype - not medical advice</div></section>
+
+<section class="pagebreak"><h2>Table of Contents</h2><div class="toc"><a>1. Executive summary and project motivation</a><a>2. Current limitations in medication selection</a><a>3. What fuzzy logic is and why it fits this problem</a><a>4. System architecture and determination process</a><a>5. Medication scoring, exclusion criteria, and safety filters</a><a>6. Sample output and interpretation</a><a>7. Code breakdown and complete source code</a><a>8. PowerPoint content and future directions</a></div><div class="callout warning"><b>Educational boundary:</b> This project is a computational prototype and portfolio artifact. It does not diagnose, prescribe, recommend clinical treatment, replace clinician judgment, or provide medical advice.</div></section>
+<section class="pagebreak"><h2>Executive Summary</h2><p>Our project aims to develop a personalized medication dosage adjustment system leveraging fuzzy logic principles. Medication dosage adjustment is a critical aspect of healthcare, influencing therapeutic outcomes and minimizing adverse effects. However, current methods often rely on fixed guidelines and may not adequately consider individual patient characteristics, leading to suboptimal outcomes and increased risk of medication errors.</p><p>Through this project, we designed a system that dynamically adapts medication recommendations based on patient-specific factors such as age, weight, gender, medical history, severity of symptoms, medication adverse-effect profile, cost, and potential drug interactions. By incorporating fuzzy logic principles, the prototype enables nuanced decision-making and represents the uncertainty and imprecision inherent in clinical data.</p><div class="grid3"><div class="metric"><b>40+</b>medication and treatment options represented in the prototype medication dataset.</div><div class="metric"><b>4</b>core fuzzy input dimensions: pain effectiveness, adverse effects, cost, and body-part relevance.</div><div class="metric"><b>3</b>desirability outputs: low, medium, and high, converted into a ranked medication list.</div></div><h2>Expanded Proposal</h2><p>The system uses Python and the scikit-fuzzy library for rule-based inference and medication desirability scoring. The early proposal also considered a machine learning extension using injection plume images. In that extension, injection images from a public dataset would be annotated with time intervals between doses, preprocessed for feature extraction, and used to train a convolutional neural network (CNN) to recognize visual patterns associated with dosage timing. The CNN's prediction of dose timing or plume characteristics could then be passed into the fuzzy logic layer as another input variable.</p><p>The final class prototype focused on the interpretable fuzzy logic component: medication selection by patient concern, symptom location, medication properties, and preliminary safety exclusions. This makes the project easier to explain, audit, and improve because each determination can be traced back to a rule, a membership function, or an exclusion criterion.</p></section>
+<section class="pagebreak"><h2>Current Limitations in Medicine and Medication Selection</h2><p>Medication decisions must balance efficacy, safety, cost, accessibility, patient comorbidities, contraindications, and patient preference. Standardized dosing guidelines are necessary because they create consistent starting points, but they can miss the gray areas where patient-specific information matters. The same symptom score or diagnosis can have different implications depending on age, kidney function, liver function, prior adverse reactions, medication access, and the body region being treated.</p><div class="grid"><div class="card"><h3>One-size-fits-all limitations</h3><p>Fixed categories simplify care but do not always capture biological variability, tolerance differences, organ function, medical history, medication interactions, or cost barriers.</p></div><div class="card"><h3>Incomplete or imprecise data</h3><p>Clinical inputs are often approximate: pain is subjective, adherence varies, adverse effects may be underreported, and medical history may be incomplete.</p></div><div class="card"><h3>Multiple competing goals</h3><p>A highly effective medication may have a worse adverse-effect profile; a safer medication may be less effective; an ideal treatment may be expensive or inaccessible.</p></div><div class="card"><h3>Need for transparency</h3><p>Clinical decision support must be explainable. A recommendation is more useful when the user can see why a medication was excluded or ranked highly.</p></div></div><h2>Relevant External Context</h2><table><tr><th>Theme</th><th>How it supports the project</th></tr><tr><td><b>Model-informed precision dosing</b></td><td>MIPD uses quantitative models and patient-specific characteristics to individualize drug exposure and response; this project is positioned as an educational prototype aligned with that broader precision-dosing idea.</td></tr><tr><td><b>Fuzzy logic in medicine</b></td><td>Fuzzy logic is useful when clinical categories are not perfectly binary because it can represent partial membership, uncertainty, and imprecision rather than forcing every input into yes/no rules.</td></tr><tr><td><b>Clinical safety boundary</b></td><td>A real clinical system would require regulatory-quality validation, expert review, contraindication checking, EHR integration, prospective testing, and human clinician oversight.</td></tr></table></section>
+<section class="pagebreak"><h2>What Fuzzy Logic Is</h2><p>Traditional Boolean logic treats statements as either true or false. Fuzzy logic allows partial truth. A medication can be somewhat affordable, very effective, moderately risky, or highly relevant to a patient's pain location. This matters because clinical variables rarely fall into perfectly clean boundaries. For example, a pain treatment score of 69 should not behave completely differently from a score of 70 simply because it crosses a cutoff.</p><div class="equation">Membership value: μ(x) ∈ [0, 1]
+Example: A medication can belong to the "high desirability" set with μ = 0.72 and the "medium desirability" set with μ = 0.28.</div><h3>How fuzzy inference works in this project</h3><div class="flow"><div>1. Inputs</div><div>2. Membership functions</div><div>3. Rule evaluation</div><div>4. Defuzzification</div><div>5. Ranking</div></div><ol><li><b>Inputs:</b> Medication scores and patient profile values are entered into the system.</li><li><b>Fuzzification:</b> Crisp values like 85 for cost or 90 for effectiveness are converted into membership degrees such as poor, average, and good.</li><li><b>Rule evaluation:</b> Rules combine evidence across effectiveness, adverse effects, cost, and relevance.</li><li><b>Aggregation:</b> The system combines activated rules into an overall desirability surface.</li><li><b>Defuzzification:</b> The final fuzzy output is converted into a crisp desirability score, which can be ranked.</li></ol><img class="figure" src="assets/fuzzy_membership_functions.png"><p class="small">Figure: membership functions for pain treatment effectiveness, adverse effects, cost, body-part relevance, and medication desirability.</p></section>
+<section class="pagebreak"><h2>System Architecture</h2><div class="grid"><div class="card"><h3>Patient profile generator</h3><p>The <code>patient_profile.py</code> script creates synthetic patient records. It randomizes age, BMI, gender, race, pain duration, pain severity, sleep, exercise, hydration, smoking, food frequency, and caffeine intake. These fields represent the type of patient-specific data that a future clinical decision-support system might use.</p></div><div class="card"><h3>Fuzzy medication selector</h3><p>The <code>NUCL570_final.py</code> script defines medication properties, fuzzy variables, membership functions, fuzzy rules, patient profiles, body-part matching, desirability scoring, and ranked output.</p></div></div><h3>How we came up with the determinations</h3><p>The determinations are not clinical prescriptions. They are prototype rankings created from assigned medication feature scores. Each medication is represented by attributes such as ease of use, cost, accessibility, pain treatment score, adverse effects score, duration score, and affected body parts. The fuzzy system then converts these numeric values into qualitative categories such as poor, average, and good. The output is a desirability score that represents how well the medication fits the simulated patient scenario.</p><table><tr><th>Determination component</th><th>How it was used</th><th>Why it matters</th></tr><tr><td>Pain treatment effectiveness</td><td>Higher scores increase membership in the favorable effectiveness category.</td><td>The system prioritizes options expected to better address the symptom.</td></tr><tr><td>Adverse effects score</td><td>Better tolerability increases desirability; poor tolerability pushes toward lower desirability.</td><td>Medication usefulness depends on both benefit and risk.</td></tr><tr><td>Cost score</td><td>Higher affordability/cost-effectiveness improves desirability in the prototype.</td><td>A treatment that is inaccessible or expensive may not be practical for the patient.</td></tr><tr><td>Body-part relevance</td><td>Medications not matching the simulated pain location are flagged as not suitable.</td><td>A medication should be relevant to the patient concern, not simply high-scoring overall.</td></tr><tr><td>Exclusion criteria</td><td>Age ranges, disease flags, and safety warnings are stored as a separate table.</td><td>Before ranking, a real system would exclude unsafe choices and explain why.</td></tr></table><div class="callout good"><b>Key portfolio value:</b> The system demonstrates explainability. It does not just output a top medication; it shows which variables influenced the ranking and why an option may be excluded.</div></section>
+<section class="pagebreak"><h2>Medication Exclusion Criteria</h2><p>The medical exclusion criteria file adds a safety-filter layer. Instead of ranking every medication blindly, the project stores exclusion flags that represent conditions where a medication may be inappropriate for a simulated patient profile. Examples include liver disease, kidney disease, gastrointestinal bleeding or ulcers, heart attack, stroke, blood disorders, narrow-angle glaucoma, urinary retention, seizures, substance abuse history, respiratory conditions, open wounds, sensitive skin, and allergies to local anesthetics.</p><p>In a complete clinical implementation, these criteria would be checked before the fuzzy ranking step. If a patient matched an exclusion flag, the medication would either be removed from consideration or sent to a clinician-warning queue. The remaining medications would then be ranked using fuzzy desirability scoring.</p><table class="exclusion-table"><tr><th>Medication</th><th>Prototype age exclusion</th><th>Flagged exclusion criteria</th><th>Strength / max dose field</th></tr><tr><td>Acetaminophen (Tylenol)</td><td>(0, 2)</td><td>Liver Disease</td><td>4000</td></tr><tr><td>Aspirin (Bayer)</td><td>(0, 12)</td><td>Reyes Syndrome Risk, Gastrointestinal Bleeding/Ulcers</td><td>N/A</td></tr><tr><td>Ibuprofen (Advil)</td><td>(0, 0.5)</td><td>Stomach Bleeding, Heart Attack, Stroke</td><td>N/A</td></tr><tr><td>Naproxen (Aleve)</td><td>(0, 12)</td><td>None listed in prototype table</td><td>N/A</td></tr><tr><td>Capsaicin Cream</td><td>(0, 18)</td><td>High-concentration Cream, Sensitive Skin, Open Wounds, Skin Irritation History</td><td>N/A</td></tr><tr><td>Lidocaine Patches</td><td>(0, 12)</td><td>High-concentration Patches, Allergic Reactions to Local Anesthetics</td><td>N/A</td></tr><tr><td>Phenazopyridine</td><td>(0, 12)</td><td>Kidney Disease, Blood Disorders</td><td>N/A</td></tr><tr><td>Diphenhydramine</td><td>(0, 6)</td><td>Narrow-angle Glaucoma, Urinary Retention, Respiratory Conditions</td><td>N/A</td></tr><tr><td>Ketoprofen</td><td>(0, 18)</td><td>Heart Attack, Stroke</td><td>300</td></tr><tr><td>Menthol (Bio Freeze)</td><td>(0, 2)</td><td>Sensitive Skin, Skin Irritation History</td><td>N/A</td></tr><tr><td>Tramadol</td><td>(0, 12)</td><td>Seizures, Substance Abuse, Respiratory Conditions</td><td>N/A</td></tr><tr><td>Codeine</td><td>(0, 12)</td><td>Liver Disease, Substance Abuse, Respiratory Conditions</td><td>N/A</td></tr><tr><td>Celecoxib</td><td>(0, 18)</td><td>Heart Attack, Stroke, Stomach Ulcers</td><td>400</td></tr><tr><td>Hydrocodone</td><td>(0, 18)</td><td>Substance Abuse, Respiratory Conditions</td><td>N/A</td></tr><tr><td>Oxycodone</td><td>(0, 18)</td><td>Substance Abuse, Respiratory Conditions</td><td>N/A</td></tr><tr><td>Morphine</td><td>(0, 18)</td><td>Substance Abuse, Respiratory Conditions</td><td>N/A</td></tr><tr><td>Fentanyl</td><td>(0, 18)</td><td>Substance Abuse, Respiratory Conditions</td><td>N/A</td></tr><tr><td>Buprenorphine</td><td>(0, 18)</td><td>Substance Abuse, Respiratory Conditions</td><td>N/A</td></tr><tr><td>Methadone</td><td>(0, 18)</td><td>Heart Rhythm Disorders, Respiratory Conditions</td><td>N/A</td></tr><tr><td>Carfentanil</td><td>(0, 18)</td><td>Substance Abuse, Respiratory Conditions</td><td>N/A</td></tr></table><h3>Determination pipeline with exclusions</h3><ol><li><b>Screen patient profile:</b> Identify age, comorbidities, history, symptom location, severity, and relevant lifestyle factors.</li><li><b>Apply hard exclusions:</b> Remove medications with age restrictions or contraindication flags that match the patient profile.</li><li><b>Apply location relevance:</b> Remove or down-rank medications that do not treat the patient's pain location.</li><li><b>Score candidate medications:</b> Use fuzzy logic to combine effectiveness, adverse effects, cost, and relevance.</li><li><b>Rank and explain:</b> Present top medications with the reasoning and any warnings.</li></ol><div class="callout warning"><b>Important:</b> The CSV is a prototype table assembled for a class project. A real clinical exclusion engine would require current drug labels, pharmacist/physician review, dosage units, route-specific rules, drug-drug interaction checks, renal/hepatic adjustment rules, pregnancy/lactation considerations, allergy verification, and validation against clinical standards.</div></section>
+<section class="pagebreak"><h2>Sample Output and Interpretation</h2><p>The code randomly selects medications and creates a simulated patient pain profile. It then checks whether the medication is listed as relevant to the patient's pain location. If relevant, the system enters the medication's pain treatment score, adverse effects score, and cost score into the fuzzy control system and computes a normalized desirability score.</p><pre class="code">Patient Profile: {&#x27;Location&#x27;: &#x27;Knee and Joint&#x27;, &#x27;Pain Severity&#x27;: 8}
+Comparison of Selected Medications with Fuzzy Logic:
+
+Medication: Ibuprofen (Advil)
+Pain Treatment Score: 90
+Adverse Effects Score: 75
+Cost Score: 85
+Body Part Relevance: matched
+Desirability Score (Normalized): 0.84
+This medication is recommended due to its high desirability.
+
+Medication: Naproxen (Aleve)
+Pain Treatment Score: 90
+Adverse Effects Score: 70
+Cost Score: 85
+Body Part Relevance: matched
+Desirability Score (Normalized): 0.82
+This medication is recommended due to its high desirability.
+
+Medication: Lidocaine patches
+This medication is not suitable for treating Knee and Joint.
+
+Top Medications Based on Pain and Location:
+1. Ibuprofen (Advil)
+2. Naproxen (Aleve)
+</pre><h3>How to read the output</h3><table><tr><th>Output element</th><th>Meaning</th></tr><tr><td>Patient Profile</td><td>The simulated patient concern, including location and pain severity.</td></tr><tr><td>Not suitable for treating location</td><td>The medication's affected-body-parts list did not include the simulated pain location.</td></tr><tr><td>Pain Treatment Score</td><td>Prototype score estimating how strongly the medication addresses pain.</td></tr><tr><td>Adverse Effects Score</td><td>Prototype score representing relative tolerability or adverse-effect favorability.</td></tr><tr><td>Cost Score</td><td>Prototype score representing affordability or practical cost-effectiveness.</td></tr><tr><td>Desirability Score</td><td>Defuzzified output normalized to a 0-1 range for ranking.</td></tr></table></section>
+<section class="pagebreak"><h2>Code Breakdown</h2><h3>1. Patient profile generation</h3><p>The first script creates synthetic profiles so the model can be tested without real patient data. The ranges approximate categories such as pediatric, adolescent, adult, and older-adult age ranges; BMI bands; pain duration; pain severity; sleep; exercise; water intake; smoking frequency; eating frequency; and caffeine intake. The output is saved as <code>random_datasets.csv</code>.</p><pre class="code">import random
+import csv
+
+# Define the ranges for each category
+age_ranges = [(0, 2), (3, 8), (9, 14), (15, 21), (22, 35), (36, 65), (65, 100)]
+bmi_ranges = [(15, 18), (19, 24), (25, 29), (30, 34), (35, 50)]
+genders = [&quot;Female&quot;, &quot;Male&quot;]
+races = [&quot;Caucasian&quot;, &quot;African American&quot;, &quot;Hispanic&quot;, &quot;Asian&quot;, &quot;Native American&quot;]
+pain_durations = [(1, 7), (8, 14), (15, 21), (22, 28), (29, 35), (36, 42)]
+pain_severity = list(range(1, 11))
+sleep_hours = [(4, 6), (6, 8), (8, 10)]
+workout_days = [(1, 7)]
+water_intake = [(0, 30), (31, 64), (65, 100)]
+smoking_days = [(1, 7)]
+eating_frequency = [(1, 4)]
+caffeine_intake = [(0, 90), (91, 200), (201, 300), (301, 400)]
+
+# Generate 100 random datasets
+num_datasets = 100
+datasets = []
+
+for _ in range(num_datasets):
+    data = {
+        &quot;Age&quot;: random.randint(*random.choice(age_ranges)),
+        &quot;BMI&quot;: random.randint(*random.choice(bmi_ranges)),
+        &quot;Gender&quot;: random.choice(genders),
+        &quot;Race&quot;: random.choice(races),
+        &quot;Physical Pain - Duration&quot;: random.randint(*random.choice(pain_durations)), 
+        &quot;Physical Pain - Severity&quot;: random.choice(pain_severity), 
+    
+        &quot;Sleep Habits - Hours Per Day&quot;: random.randint(*random.choice(sleep_hours)),
+      
+        &quot;Lifestyle - Workout Days per Week&quot; : random.randint(*random.choice(workout_days)),
+        &quot;Lifestyle - Water Intake (ounces)&quot; : random.randint(*random.choice(water_intake)),
+        &quot;Lifestyle - Smoking Days per Week&quot; : random.randint(*random.choice(smoking_days)), 
+        &quot;Lifestyle - Eating Frequency per Day&quot; : random.randint(*random.choice(eating_frequency)),
+        &quot;Lifestyle - Caffeine Intake (mg)&quot; : random.randint(*random.choice(caffeine_intake))       
+        }
+
+    datasets.append(data)
+
+# Save directory
+output_directory = r&quot;C:\Users\lyles\Desktop\Outputs&quot;
+csv_filename = &quot;random_datasets.csv&quot;
+full_path = output_directory + &quot;\\&quot; + csv_filename
+
+# Write the datasets to a CSV file
+with open(full_path, mode=&#x27;w&#x27;, newline=&#x27;&#x27;) as file:
+    writer = csv.DictWriter(file, fieldnames=datasets[0].keys())
+
+    writer.writeheader()
+    for data in datasets:
+        writer.writerow(data)
+
+print(f&quot;Data has been saved to {full_path}&quot;)
+</pre></section>
+<section class="pagebreak"><h2>Code Breakdown Continued: Fuzzy Medication Selection</h2><p>The main script defines the medication feature database. Each medication is assigned numeric scores for ease of use, cost, accessibility, pain treatment, adverse effects, duration, and body-part relevance through affected-body-part lists. These values are then used by the fuzzy inference system.</p><h3>Important code sections</h3><table><tr><th>Code section</th><th>Purpose</th></tr><tr><td>Medication data dictionary</td><td>Stores the candidate medications and their feature scores.</td></tr><tr><td>Fuzzy variables</td><td>Defines antecedents for pain treatment effectiveness, adverse effects, cost, and body-part relevance, plus a consequent for medication desirability.</td></tr><tr><td>Membership functions</td><td>Uses automatic poor/average/good membership functions for inputs and triangular low/medium/high output functions.</td></tr><tr><td>Rules</td><td>Maps poor input categories to low desirability, average to medium desirability, and good to high desirability.</td></tr><tr><td>Patient matching</td><td>Checks if the patient's pain location is included in a medication's affected body parts.</td></tr><tr><td>Defuzzification and ranking</td><td>Computes a crisp desirability score and sorts medications from highest to lowest.</td></tr></table><pre class="code code-mini">import numpy as np
+import skfuzzy as fuzz
+from skfuzzy import control as ctrl
+import random
+import matplotlib.pyplot as plt
+
+# Define medication data
+medication_data = {
+    &quot;Acetaminophen (Tylenol)&quot;: {&quot;Ease of Use Score&quot;: 90, &quot;Cost Score&quot;: 80, &quot;Accessibility Score&quot;: 85, &quot;Pain Treatment Score&quot;: 95, &quot;Adverse Effects Score&quot;: 70, &quot;Duration Score&quot;: 85, &quot;Affected Body Parts&quot;: [&quot;Lower Back&quot;, &quot;Headaches and Migraines&quot;]},
+    &quot;Ibuprofen (Advil)&quot;: {&quot;Ease of Use Score&quot;: 85, &quot;Cost Score&quot;: 85, &quot;Accessibility Score&quot;: 80, &quot;Pain Treatment Score&quot;: 90, &quot;Adverse Effects Score&quot;: 75, &quot;Duration Score&quot;: 80, &quot;Affected Body Parts&quot;: [&quot;Neck and Shoulder&quot;, &quot;Knee and Joint&quot;]},
+    &quot;Naproxen (Aleve)&quot;: {&quot;Ease of Use Score&quot;: 80, &quot;Cost Score&quot;: 85, &quot;Accessibility Score&quot;: 75, &quot;Pain Treatment Score&quot;: 90, &quot;Adverse Effects Score&quot;: 70, &quot;Duration Score&quot;: 85, &quot;Affected Body Parts&quot;: [&quot;Lower Back&quot;, &quot;Neck and Shoulder&quot;, &quot;Knee and Joint&quot;, &quot;Headaches and Migraines&quot;]},
+    &quot;Aspirin (Bayer)&quot;: {&quot;Ease of Use Score&quot;: 80, &quot;Cost Score&quot;: 80, &quot;Accessibility Score&quot;: 70, &quot;Pain Treatment Score&quot;: 85, &quot;Adverse Effects Score&quot;: 75, &quot;Duration Score&quot;: 85, &quot;Affected Body Parts&quot;: [&quot;General Pain&quot;, &quot;Backaches&quot;, &quot;Muscle Pain&quot;, &quot;Headaches and Migraines&quot;]},
+    &quot;Diclofenac (Voltaren)&quot;: {&quot;Ease of Use Score&quot;: 75, &quot;Cost Score&quot;: 70, &quot;Accessibility Score&quot;: 75, &quot;Pain Treatment Score&quot;: 85, &quot;Adverse Effects Score&quot;: 80, &quot;Duration Score&quot;: 75, &quot;Affected Body Parts&quot;: [&quot;Lower Back&quot;, &quot;Neck and Shoulder&quot;, &quot;Knee and Joint&quot;, &quot;Headaches and Migraines&quot;]},
+    &quot;Celecoxib (Celebrex)&quot;: {&quot;Ease of Use Score&quot;: 70, &quot;Cost Score&quot;: 75, &quot;Accessibility Score&quot;: 80, &quot;Pain Treatment Score&quot;: 85, &quot;Adverse Effects Score&quot;: 70, &quot;Duration Score&quot;: 80, &quot;Affected Body Parts&quot;: [&quot;Knee and Joint&quot;, &quot;Arthritis&quot;]},
+    &quot;Meloxicam (Mobic)&quot;: {&quot;Ease of Use Score&quot;: 75, &quot;Cost Score&quot;: 70, &quot;Accessibility Score&quot;: 75, &quot;Pain Treatment Score&quot;: 80, &quot;Adverse Effects Score&quot;: 70, &quot;Duration Score&quot;: 80, &quot;Affected Body Parts&quot;: [&quot;Lower Back&quot;, &quot;Neck and Shoulder&quot;, &quot;Knee and Joint&quot;, &quot;Headaches and Migraines&quot;]},
+    &quot;Tramadol (Ultram)&quot;: {&quot;Ease of Use Score&quot;: 70, &quot;Cost Score&quot;: 80, &quot;Accessibility Score&quot;: 70, &quot;Pain Treatment Score&quot;: 90, &quot;Adverse Effects Score&quot;: 80, &quot;Duration Score&quot;: 85, &quot;Affected Body Parts&quot;: [&quot;Lower Back&quot;]},
+    &quot;Cyclobenzaprine (Flexeril)&quot;: {&quot;Ease of Use Score&quot;: 65, &quot;Cost Score&quot;: 70, &quot;Accessibility Score&quot;: 75, &quot;Pain Treatment Score&quot;: 80, &quot;Adverse Effects Score&quot;: 75, &quot;Duration Score&quot;: 70, &quot;Affected Body Parts&quot;: [&quot;Neck and Shoulder&quot;, &quot;Knee and Joint&quot;]},
+    &quot;Methocarbamol (Robaxin)&quot;: {&quot;Ease of Use Score&quot;: 65, &quot;Cost Score&quot;: 70, &quot;Accessibility Score&quot;: 75, &quot;Pain Treatment Score&quot;: 80, &quot;Adverse Effects Score&quot;: 70, &quot;Duration Score&quot;: 70, &quot;Affected Body Parts&quot;: [&quot;Lower Back&quot;, &quot;Neck and Shoulder&quot;, &quot;Knee and Joint&quot;]},
+    &quot;Gabapentin (Neurontin)&quot;: {&quot;Ease of Use Score&quot;: 75, &quot;Cost Score&quot;: 80, &quot;Accessibility Score&quot;: 70, &quot;Pain Treatment Score&quot;: 75, &quot;Adverse Effects Score&quot;: 75, &quot;Duration Score&quot;: 85, &quot;Affected Body Parts&quot;: [&quot;Lower Back&quot;, &quot;Hands and Wrists&quot;, &quot;Knee and Joint&quot; ]},
+    &quot;Pregabalin (Lyrica)&quot;: {&quot;Ease of Use Score&quot;: 75, &quot;Cost Score&quot;: 85, &quot;Accessibility Score&quot;: 70, &quot;Pain Treatment Score&quot;: 75, &quot;Adverse Effects Score&quot;: 75, &quot;Duration Score&quot;: 85, &quot;Affected Body Parts&quot;: [&quot;Nerves&quot;]},
+    &quot;Oxycodone (Percocet)&quot;: {&quot;Ease of Use Score&quot;: 70, &quot;Cost Score&quot;: 75, &quot;Accessibility Score&quot;: 65, &quot;Pain Treatment Score&quot;: 90, &quot;Adverse Effects Score&quot;: 80, &quot;Duration Score&quot;: 75, &quot;Affected Body Parts&quot;: [&quot;Lower Back&quot;, &quot;Knee and Joints&quot;, &quot;Abdomen&quot;]},
+    &quot;Amitriptyline (Elavil)&quot;: {&quot;Ease of Use Score&quot;: 70, &quot;Cost Score&quot;: 80, &quot;Accessibility Score&quot;: 70, &quot;Pain Treatment Score&quot;: 75, &quot;Adverse Effects Score&quot;: 85, &quot;Duration Score&quot;: 80, &quot;Affected Body Parts&quot;: [&quot;Nerves&quot;, &quot;Headaches and Migraines&quot;, &quot;&quot;]},
+    &quot;Capsaicin cream&quot;: {&quot;Ease of Use Score&quot;: 80, &quot;Cost Score&quot;: 70, &quot;Accessibility Score&quot;: 70, &quot;Pain Treatment Score&quot;: 75, &quot;Adverse Effects Score&quot;: 75, &quot;Duration Score&quot;: 65, &quot;Affected Body Parts&quot;: [&quot;Knee and Joints&quot;, &quot;Muslces&quot;, &quot;Lower Back&quot;]},
+    &quot;Lidocaine patches&quot;: {&quot;Ease of Use Score&quot;: 75, &quot;Cost Score&quot;: 70, &quot;Accessibility Score&quot;: 80, &quot;Pain Treatment Score&quot;: 75, &quot;Adverse Effects Score&quot;: 70, &quot;Duration Score&quot;: 70, &quot;Affected Body Parts&quot;: [&quot;Lower Back&quot;, &quot;Joints&quot;, &quot;Muscles&quot;]},
+    &quot;Massage therapy&quot;: {&quot;Ease of Use Score&quot;: 90, &quot;Cost Score&quot;: 75, &quot;Accessibility Score&quot;: 70, &quot;Pain Treatment Score&quot;: 80, &quot;Adverse Effects Score&quot;: 70, &quot;Duration Score&quot;: 60, &quot;Affected Body Parts&quot;: [&quot;General Pain&quot;, &quot;Lower Back&quot;, &quot;Neck and Shoulders&quot;, &quot;Legs&quot;, &quot;Arms&quot;, &quot;Feet&quot;]},
+    &quot;Hyaluronic acid injections&quot;: {&quot;Ease of Use Score&quot;: 60, &quot;Cost Score&quot;: 50, &quot;Accessibility Score&quot;: 50, &quot;Pain Treatment Score&quot;: 70, &quot;Adverse Effects Score&quot;: 60, &quot;Duration Score&quot;: 70, &quot;Affected Body Parts&quot;: [&quot;Knee and Joint&quot;]},
+    &quot;Corticosteroid injections&quot;: {&quot;Ease of Use Score&quot;: 65, &quot;Cost Score&quot;: 60, &quot;Accessibility Score&quot;: 55, &quot;Pain Treatment Score&quot;: 75, &quot;Adverse Effects Score&quot;: 70, &quot;Duration Score&quot;: 75, &quot;Affected Body Parts&quot;: [&quot;Joint&quot;, &quot;Spine&quot;]},
+    &quot;Glucosamine and chondroitin supplements&quot;: {&quot;Ease of Use Score&quot;: 70, &quot;Cost Score&quot;: 80, &quot;Accessibility Score&quot;: 80, &quot;Pain Treatment Score&quot;: 65, &quot;Adverse Effects Score&quot;: 65, &quot;Duration Score&quot;: 80, &quot;Affected Body Parts&quot;: [&quot;Knee and Joint&quot;]},
+    &quot;Physical therapy exercises&quot;: {&quot;Ease of Use Score&quot;: 85, &quot;Cost Score&quot;: 70, &quot;Accessibility Score&quot;: 75, &quot;Pain Treatment Score&quot;: 80, &quot;Adverse Effects Score&quot;: 70, &quot;Duration Score&quot;: 85, &quot;Affected Body Parts&quot;: [&quot;Lower Back&quot;, &quot;Neck and Shoulder&quot;, &quot;Knee and Joint&quot;]},
+    &quot;Acupuncture&quot;: {&quot;Ease of Use Score&quot;: 75, &quot;Cost Score&quot;: 75, &quot;Accessibility Score&quot;: 70, &quot;Pain Treatment Score&quot;: 80, &quot;Adverse Effects Score&quot;: 70, &quot;Duration Score&quot;: 80, &quot;Affected Body Parts&quot;: [&quot;Lower Back&quot;, &quot;Neck and Shoulder&quot;, &quot;Headaches and Migraines&quot;, &quot;General Pain&quot;]},
+    &quot;Knee braces/supports&quot;: {&quot;Ease of Use Score&quot;: 80, &quot;Cost Score&quot;: 70, &quot;Accessibility Score&quot;: 85, &quot;Pain Treatment Score&quot;: 70, &quot;Adverse Effects Score&quot;: 65, &quot;Duration Score&quot;: 85, &quot;Affected Body Parts&quot;: [&quot;Knee and Joint&quot;]},
+    &quot;Excedrin&quot;: {&quot;Ease of Use Score&quot;: 70, &quot;Cost Score&quot;: 80, &quot;Accessibility Score&quot;: 75, &quot;Pain Treatment Score&quot;: 80, &quot;Adverse Effects Score&quot;: 75, &quot;Duration Score&quot;: 80, &quot;Affected Body Parts&quot;: [&quot;Headaches and Migraines&quot;]},
+    &quot;Sumatriptan (Imitrex)&quot;: {&quot;Ease of Use Score&quot;: 75, &quot;Cost Score&quot;: 80, &quot;Accessibility Score&quot;: 70, &quot;Pain Treatment Score&quot;: 85, &quot;Adverse Effects Score&quot;: 70, &quot;Duration Score&quot;: 85, &quot;Affected Body Parts&quot;: [&quot;Headaches and Migraines&quot;]},
+    &quot;Rizatriptan (Maxalt)&quot;: {&quot;Ease of Use Score&quot;: 75, &quot;Cost Score&quot;: 80, &quot;Accessibility Score&quot;: 70, &quot;Pain Treatment Score&quot;: 85, &quot;Adverse Effects Score&quot;: 70, &quot;Duration Score&quot;: 85, &quot;Affected Body Parts&quot;: [&quot;Headaches and Migraines&quot;]},
+    &quot;Diclofenac potassium (Cambia)&quot;: {&quot;Ease of Use Score&quot;: 75, &quot;Cost Score&quot;: 85, &quot;Accessibility Score&quot;: 70, &quot;Pain Treatment Score&quot;: 85, &quot;Adverse Effects Score&quot;: 70, &quot;Duration Score&quot;: 85, &quot;Affected Body Parts&quot;: [&quot;Headaches and Migraines&quot;, &quot;Muscles&quot;, &quot;Joints&quot;]},
+    &quot;Ergotamine derivatives&quot;: {&quot;Ease of Use Score&quot;: 65, &quot;Cost Score&quot;: 70, &quot;Accessibility Score&quot;: 70, &quot;Pain Treatment Score&quot;: 80, &quot;Adverse Effects Score&quot;: 75, &quot;Duration Score&quot;: 75, &quot;Affected Body Parts&quot;: [&quot;Headaches and Migraines&quot;]},
+    &quot;Butalbital-containing medications&quot;: {&quot;Ease of Use Score&quot;: 60, &quot;Cost Score&quot;: 75, &quot;Accessibility Score&quot;: 70, &quot;Pain Treatment Score&quot;: 75, &quot;Adverse Effects Score&quot;: 80, &quot;Duration Score&quot;: 70, &quot;Affected Body Parts&quot;: [&quot;Headaches and Migraines&quot;]},
+    &quot;Prochlorperazine (Compazine)&quot;: {&quot;Ease of Use Score&quot;: 70, &quot;Cost Score&quot;: 70, &quot;Accessibility Score&quot;: 75, &quot;Pain Treatment Score&quot;: 75, &quot;Adverse Effects Score&quot;: 80, &quot;Duration Score&quot;: 70, &quot;Affected Body Parts&quot;: [&quot;Headaches and Migraines&quot;]},
+    &quot;Metoclopramide (Reglan)&quot;: {&quot;Ease of Use Score&quot;: 70, &quot;Cost Score&quot;: 75, &quot;Accessibility Score&quot;: 75, &quot;Pain Treatment Score&quot;: 75, &quot;Adverse Effects Score&quot;: 80, &quot;Duration Score&quot;: 70, &quot;Affected Body Parts&quot;: [&quot;Headaches and Migraines&quot;]},
+    &quot;Dihydroergotamine (Migranal)&quot;: {&quot;Ease of Use Score&quot;: 65, &quot;Cost Score&quot;: 75, &quot;Accessibility Score&quot;: 70, &quot;Pain Treatment Score&quot;: 80, &quot;Adverse Effects Score&quot;: 75, &quot;Duration Score&quot;: 75, &quot;Affected Body Parts&quot;: [&quot;Headaches and Migraines&quot;]},
+    &quot;Botulinum toxin injections (Botox)&quot;: {&quot;Ease of Use Score&quot;: 60, &quot;Cost Score&quot;: 70, &quot;Accessibility Score&quot;: 65, &quot;Pain Treatment Score&quot;: 80, &quot;Adverse Effects Score&quot;: 75, &quot;Duration Score&quot;: 70, &quot;Affected Body Parts&quot;: [&quot;Headaches and Migraines&quot;]},
+    &quot;Amoxicillin&quot;: {&quot;Ease of Use Score&quot;: 80, &quot;Cost Score&quot;: 80, &quot;Accessibility Score&quot;: 90, &quot;Pain Treatment Score&quot;: 70, &quot;Adverse Effects Score&quot;: 70, &quot;Duration Score&quot;: 80, &quot;Affected Body Parts&quot;: [&quot;Respiratory Tract&quot;, &quot;Mouth&quot;]},
+    &quot;Clindamycin&quot;: {&quot;Ease of Use Score&quot;: 75, &quot;Cost Score&quot;: 85, &quot;Accessibility Score&quot;: 80, &quot;Pain Treatment Score&quot;: 70, &quot;Adverse Effects Score&quot;: 75, &quot;Duration Score&quot;: 85, &quot;Affected Body Parts&quot;: [&quot;Mouth&quot;, &quot;Bone&quot;, &quot;Joint&quot;, &quot;Respiratory Tract&quot;]},
+    &quot;Lidocaine gel&quot;: {&quot;Ease of Use Score&quot;: 80, &quot;Cost Score&quot;: 75, &quot;Accessibility Score&quot;: 85, &quot;Pain Treatment Score&quot;: 75, &quot;Adverse Effects Score&quot;: 70, &quot;Duration Score&quot;: 75, &quot;Affected Body Parts&quot;: [&quot;Mouth&quot;, &quot;Throat&quot;]},
+    &quot;Benzocaine (Orajel)&quot;: {&quot;Ease of Use Score&quot;: 85, &quot;Cost Score&quot;: 70, &quot;Accessibility Score&quot;: 85, &quot;Pain Treatment Score&quot;: 70, &quot;Adverse Effects Score&quot;: 75, &quot;Duration Score&quot;: 70, &quot;Affected Body Parts&quot;: [&quot;Mouth&quot;]},
+    &quot;Nonsteroidal anti-inflammatory gels like diclofenac (Voltaren) gel&quot;: {&quot;Ease of Use Score&quot;: 80, &quot;Cost Score&quot;: 75, &quot;Accessibility Score&quot;: 85, &quot;Pain Treatment Score&quot;: 75, &quot;Adverse Effects Score&quot;: 70, &quot;Duration Score&quot;: 75, &quot;Affected Body Parts&quot;: [&quot;Joint&quot;, &quot;Muscle&quot;, &quot;Back&quot;]},
+    &quot;Antimicrobial mouth rinses&quot;: {&quot;Ease of Use Score&quot;: 85, &quot;Cost Score&quot;: 80, &quot;Accessibility Score&quot;: 90, &quot;Pain Treatment Score&quot;: 70, &quot;Adverse Effects Score&quot;: 70, &quot;Duration Score&quot;: 80, &quot;Affected Body Parts&quot;: [&quot;Mouth&quot;, &quot;Throat&quot;]},
+    &quot;Chlorhexidine gluconate oral rinse&quot;: {&quot;Ease of Use Score&quot;: 85, &quot;Cost Score&quot;: 80, &quot;Accessibility Score&quot;: 90, &quot;Pain Treatment Score&quot;: 70, &quot;Adverse Effects Score&quot;: 70, &quot;Duration Score&quot;: 80, &quot;Affected Body Parts&quot;: [&quot;Mouth&quot;]},
+    &quot;Dental anesthetics like articaine or lidocaine injections&quot;: {&quot;Ease of Use Score&quot;: 75, &quot;Cost Score&quot;: 75, &quot;Accessibility Score&quot;: 85, &quot;Pain Treatment Score&quot;: 75, &quot;Adverse Effects Score&quot;: 70, &quot;Duration Score&quot;: 75, &quot;Affected Body Parts&quot;: [&quot;Neck and Shoulder&quot;, &quot;Knee and Joint&quot;]}
+}
+# Define fuzzy variables
+pain_treatment_effectiveness = ctrl.Antecedent(np.arange(0, 101, 1), &#x27;pain_treatment_effectiveness&#x27;)
+adverse_effects = ctrl.Antecedent(np.arange(0, 101, 1), &#x27;adverse_effects&#x27;)
+cost = ctrl.Antecedent(np.arange(0, 101, 1), &#x27;cost&#x27;)
+body_part_relevance = ctrl.Antecedent(np.arange(0, 101, 1), &#x27;body_part_relevance&#x27;)
+medication_desirability = ctrl.Consequent(np.arange(0, 101, 1), &#x27;medication_desirability&#x27;)
+
+# Define fuzzy sets for body part relevance
+body_part_relevance.automf(3)
+
+# Define fuzzy sets for pain treatment effectiveness, adverse effects, and cost
+pain_treatment_effectiveness.automf(3)
+adverse_effects.automf(3)
+cost.automf(3)
+
+# Define fuzzy sets for medication desirability
+medication_desirability[&#x27;low&#x27;] = fuzz.trimf(medication_desirability.universe, [0, 0, 50])
+medication_desirability[&#x27;medium&#x27;] = fuzz.trimf(medication_desirability.universe, [25, 50, 75])
+medication_desirability[&#x27;high&#x27;] = fuzz.trimf(medication_desirability.universe, [50, 100, 100])
+
+# Define fuzzy rules
+rules = []
+rules.append(ctrl.Rule(pain_treatment_effectiveness[&#x27;poor&#x27;] | adverse_effects[&#x27;poor&#x27;] | cost[&#x27;poor&#x27;], medication_desirability[&#x27;low&#x27;]))
+rules.append(ctrl.Rule(pain_treatment_effectiveness[&#x27;average&#x27;] | adverse_effects[&#x27;average&#x27;] | cost[&#x27;average&#x27;], medication_desirability[&#x27;medium&#x27;]))
+rules.append(ctrl.Rule(pain_treatment_effectiveness[&#x27;good&#x27;] | adverse_effects[&#x27;good&#x27;] | cost[&#x27;good&#x27;], medication_desirability[&#x27;high&#x27;]))
+
+# Create control system
+medication_selection_ctrl = ctrl.ControlSystem(rules)
+medication_selection = ctrl.ControlSystemSimulation(medication_selection_ctrl)
+
+# Set inputs for the control system
+medication_selection.input[&#x27;pain_treatment_effectiveness&#x27;] = 0  # Initialize with a value, it will be overwritten later
+medication_selection.input[&#x27;adverse_effects&#x27;] = 0  # Initialize with a value, it will be overwritten later
+medication_selection.input[&#x27;cost&#x27;] = 0  # Initialize with a value, it will be overwritten later
+
+# Select random medications
+random_medications = random.sample(medication_data.keys(), 3)
+
+# Define patient profiles
+patient_profiles = []
+for _ in range(1):
+    locations = [&quot;Lower Back&quot;, &quot;Neck and Shoulder&quot;, &quot;Knee and Joint&quot;, &quot;Headaches and Migraines&quot;, &quot;Dental&quot;]
+    pain_severity = random.randint(1, 10)
+    location = random.choice(locations)
+    patient_profiles.append({&quot;Location&quot;: location, &quot;Pain Severity&quot;: pain_severity})
+
+# Lists to store desirability scores for each medication
+desirability_scores = []
+
+# Compute output for each patient profile and each medication
+for profile in patient_profiles:
+    print(f&quot;\nPatient Profile: {profile}&quot;)
+    print(&quot;Comparison of Selected Medications with Fuzzy Logic:&quot;)
+    for medication in random_medications:
+        affected_body_parts = medication_data.get(medication, {}).get(&quot;Affected Body Parts&quot;)
+        if affected_body_parts and profile[&quot;Location&quot;] not in affected_body_parts:
+            print(f&quot;\nMedication: {medication}&quot;)
+            print(f&quot;This medication is not suitable for treating {profile[&#x27;Location&#x27;]}.&quot;)
+        else:
+            medication_selection.input[&#x27;pain_treatment_effectiveness&#x27;] = medication_data[medication][&quot;Pain Treatment Score&quot;]
+            medication_selection.input[&#x27;adverse_effects&#x27;] = medication_data[medication][&quot;Adverse Effects Score&quot;]
+            medication_selection.input[&#x27;cost&#x27;] = medication_data[medication][&quot;Cost Score&quot;]
+
+            # Compute output
+            medication_selection.compute()
+
+            # Determine medication desirability
+            desirability_score = medication_selection.output[&#x27;medication_desirability&#x27;] / 100  # Normalize to 0-1 range
+
+            print(f&quot;\nMedication: {medication}&quot;)
+            print(&quot;Pain Treatment Score:&quot;, medication_data[medication][&quot;Pain Treatment Score&quot;])
+            print(&quot;Adverse Effects Score:&quot;, medication_data[medication][&quot;Adverse Effects Score&quot;])
+            print(&quot;Cost Score:&quot;, medication_data[medication][&quot;Cost Score&quot;])
+            print(&quot;Desirability Score (Normalized):&quot;, desirability_score)
+
+            desirability_scores.append((medication, desirability_score))
+
+            # Print why certain medication is the best
+            if desirability_score &gt;= 0.5:
+                print(&quot;This medication is recommended due to its high desirability.&quot;)
+            else:
+                print(&quot;This medication is not recommended due to its low desirability.&quot;)
+
+# Sort medications by desirability scores
+sorted_medications = sorted(desirability_scores, key=lambda x: x[1], reverse=True)
+
+
+# Print the prompt displaying top 3 medications, an okay medicine, and the worst medicine
+print(&quot;\nTop Medications Based on Pain and Location:&quot;)
+for i in range(len(sorted_medications)):
+    print(f&quot;{i+1}. {sorted_medications[i][0]}&quot;)
+
+
+</pre></section>
+<section class="pagebreak"><h2>Complete Medical Exclusion Criteria CSV</h2><p>The full medical exclusion criteria file is included below and is also provided in the <code>data/</code> folder of the GitHub package.</p><pre class="code code-mini">Medication,Age,BMI,Gender,Race,Physical Pain Duration,Physical Pain Severity,Liver Disease,Reyes Syndrome Risk,Gastrointestinal Bleeding/Ulcers,Stomach Bleeding,Heart Attack,Stroke,High-concentration Cream,Sensitive Skin,Open Wounds,Skin Irritation History,High-concentration Patches,Allergic Reactions to Local Anesthetics,Kidney Disease,Blood Disorders,Narrow-angle Glaucoma,Urinary Retention,Seizures,Substance Abuse,Stomach Ulcers,Heart Rhythm Disorders,Respiratory Conditions,Duration (Pain),Duration (Fever),Strength (mg)
+Acetaminophen (Tylenol),&quot;(0, 2)&quot;,N/A,N/A,N/A,N/A,N/A,True,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,10,5,4000
+Aspirin (Bayer),&quot;(0, 12)&quot;,N/A,N/A,N/A,N/A,N/A,N/A,True,True,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,10,3,N/A
+Ibuprofen (Advil),&quot;(0, 0.5)&quot;,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,True,True,True,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,10,3,N/A
+Naproxen (Aleve),&quot;(0, 12)&quot;,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,10,3,N/A
+Capsaicin Cream,&quot;(0, 18)&quot;,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,True,True,True,True,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+Lidocaine Patches,&quot;(0, 12)&quot;,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,True,True,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+Phenazopyridine,&quot;(0, 12)&quot;,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,True,True,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+Diphenhydramine,&quot;(0, 6)&quot;,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,True,True,N/A,N/A,N/A,N/A,True,N/A,N/A,N/A
+Ketoprofen,&quot;(0, 18)&quot;,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,True,True,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,300
+Menthol (Bio Freeze),&quot;(0, 2)&quot;,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,True,N/A,True,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+Tramadol,&quot;(0, 12)&quot;,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,True,True,N/A,N/A,True,N/A,N/A,N/A
+Codeine,&quot;(0, 12)&quot;,N/A,N/A,N/A,N/A,N/A,True,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,True,N/A,N/A,True,N/A,N/A,N/A
+Celecoxib,&quot;(0, 18)&quot;,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,True,True,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,True,N/A,N/A,N/A,N/A,400
+Hydrocodone,&quot;(0, 18)&quot;,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,True,N/A,N/A,True,N/A,N/A,N/A
+Oxycodone,&quot;(0, 18)&quot;,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,True,N/A,N/A,True,N/A,N/A,N/A
+Morphine,&quot;(0, 18)&quot;,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,True,N/A,N/A,True,N/A,N/A,N/A
+Fentanyl,&quot;(0, 18)&quot;,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,True,N/A,N/A,True,N/A,N/A,N/A
+Buprenorphine,&quot;(0, 18)&quot;,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,True,N/A,N/A,True,N/A,N/A,N/A
+Methadone,&quot;(0, 18)&quot;,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,True,True,N/A,N/A,N/A
+Carfentanil,&quot;(0, 18)&quot;,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,True,N/A,N/A,True,N/A,N/A,N/A
+</pre></section>
+<section class="pagebreak"><h2>PowerPoint Content Integrated</h2><p>The original presentation framed the project as a medication allocation system using fuzzy logic. It introduced the team, the initial injection-plume image proposal, the revised medication brand-allocation proposal, the current medication prescription workflow, the importance of prescription safety, fuzzy logic benefits, implementation details, code review, membership functions, project results, conclusions, and future directions.</p><div class="grid"><div class="card"><h3>Original proposal</h3><p>Train an AI model using injection plume images to determine dosage amount for patient administration.</p></div><div class="card"><h3>Revised proposal</h3><p>Use a model to calculate the appropriate medication option that best fits the patient based on medical concerns.</p></div><div class="card"><h3>Fuzzy logic benefits</h3><p>Handling uncertainty, flexibility and adaptability, and linguistic interpretation.</p></div><div class="card"><h3>Fuzzy inference process</h3><p>scikit-fuzzy, triangular/trapezoidal membership functions, Mamdani-style implication, OR aggregation, and centroid defuzzification.</p></div></div><h3>Future Directions</h3><ol><li><b>More input variables:</b> Add renal function, hepatic function, allergies, pregnancy/lactation status, medication interactions, adherence, insurance coverage, and patient preference.</li><li><b>Refined fuzzy rules:</b> Replace prototype rules with clinician-reviewed rules and drug-specific logic.</li><li><b>EHR integration:</b> Pull structured patient data from the medical record and return transparent recommendation explanations.</li><li><b>Machine learning extension:</b> Revisit the injection image CNN pathway and integrate model outputs into fuzzy inputs.</li><li><b>Validation:</b> Compare system rankings against expert pharmacist/physician judgments using simulated cases before any real-world testing.</li></ol></section>
+<section class="pagebreak"><h2>References and Source Themes</h2><ol><li>Model-informed precision dosing literature describing individualized dosing using mathematical models and patient-specific characteristics.</li><li>Reviews on fuzzy logic in medicine describing partial truth values, uncertainty modeling, and decision support applications.</li><li>Clinical decision-support safety principles requiring transparency, validation, and clinician oversight before real-world use.</li><li>Original project files: <code>patient_profile.py</code>, <code>NUCL570_final.py</code>, <code>medication_exclusion_criteria.csv</code>, and <code>Final NUCL 570 Presentation.pptx</code>.</li></ol><div class="callout"><b>Final note:</b> This report intentionally presents the project as an academic engineering prototype by Jordan Christopher Lyles. It is designed for portfolio publication, code transparency, and professional search visibility while staying clear that it is not a clinical tool.</div></section>
+</body></html>

@@ -1,0 +1,25 @@
+Patient Profile: {'Location': 'Knee and Joint', 'Pain Severity': 8}
+Comparison of Selected Medications with Fuzzy Logic:
+
+Medication: Ibuprofen (Advil)
+Pain Treatment Score: 90
+Adverse Effects Score: 75
+Cost Score: 85
+Body Part Relevance: matched
+Desirability Score (Normalized): 0.84
+This medication is recommended due to its high desirability.
+
+Medication: Naproxen (Aleve)
+Pain Treatment Score: 90
+Adverse Effects Score: 70
+Cost Score: 85
+Body Part Relevance: matched
+Desirability Score (Normalized): 0.82
+This medication is recommended due to its high desirability.
+
+Medication: Lidocaine patches
+This medication is not suitable for treating Knee and Joint.
+
+Top Medications Based on Pain and Location:
+1. Ibuprofen (Advil)
+2. Naproxen (Aleve)

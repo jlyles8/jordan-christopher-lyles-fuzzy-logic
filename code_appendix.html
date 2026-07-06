@@ -1,0 +1,224 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Full Code Appendix - Jordan Christopher Lyles</title><style>
+@page { size: Letter; margin: 0.55in; }
+:root{--navy:#071427;--blue:#1d4ed8;--cyan:#06b6d4;--slate:#334155;--muted:#64748b;--line:#dbeafe;--soft:#eff6ff;--panel:#f8fafc;--green:#059669;--orange:#d97706}
+*{box-sizing:border-box} body{margin:0;font-family:Inter,Arial,Helvetica,sans-serif;color:#0f172a;background:white;line-height:1.52;font-size:10.2pt} a{color:#1d4ed8} h1,h2,h3{line-height:1.12;margin:0} h1{font-size:35pt;letter-spacing:-.04em} h2{font-size:20pt;margin:20pt 0 9pt;color:#0f2a5f;border-bottom:2px solid #bfdbfe;padding-bottom:6pt} h3{font-size:13.2pt;margin:13pt 0 5pt;color:#0f172a} p{margin:0 0 8pt}.small{font-size:8.2pt;color:#64748b}.kicker{text-transform:uppercase;letter-spacing:.15em;color:#7dd3fc;font-weight:900;font-size:8.5pt}.cover{height:9.35in;border-radius:26pt;color:white;background:radial-gradient(circle at 80% 15%,rgba(14,165,233,.9),transparent 30%),linear-gradient(135deg,#020617,#0f2a5f 58%,#0891b2);padding:52pt;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 20pt 50pt rgba(15,23,42,.22)}.subtitle{font-size:15pt;max-width:570pt;color:#e0f2fe;margin-top:14pt}.byline{background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.26);padding:16pt;border-radius:18pt}.chips span{display:inline-block;margin:8pt 5pt 0 0;padding:6pt 9pt;border-radius:999pt;border:1px solid rgba(255,255,255,.35);font-weight:800;color:#e0f2fe}.pagebreak{break-before:page}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12pt}.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10pt}.card,.source-card{border:1px solid #dbeafe;background:#f8fafc;border-radius:16pt;padding:13pt;margin-bottom:10pt}.source-card{background:linear-gradient(180deg,#ffffff,#eff6ff)}.metric{background:#f8fafc;border:1px solid #dbeafe;border-radius:16pt;padding:12pt}.metric b{display:block;font-size:18pt;color:#1d4ed8}.callout{border-left:5pt solid #2563eb;background:#eff6ff;padding:12pt 14pt;border-radius:12pt;margin:12pt 0}.warning{border-left-color:#d97706;background:#fff7ed}.good{border-left-color:#059669;background:#ecfdf5}table{width:100%;border-collapse:collapse;margin:8pt 0 14pt;font-size:8.7pt}th{background:#dbeafe;color:#1e3a8a;text-align:left;font-weight:900}th,td{border:1px solid #cbd5e1;padding:6pt;vertical-align:top}.wide-table{font-size:6.7pt}.exclusion-table{font-size:7.3pt}.figure{width:100%;border:1px solid #e2e8f0;border-radius:16pt;margin:5pt 0 8pt}.equation{font-family:Consolas,'Courier New',monospace;background:#020617;color:#e0f2fe;border-radius:14pt;padding:12pt;margin:8pt 0}.flow{display:grid;grid-template-columns:repeat(5,1fr);gap:7pt;margin:12pt 0}.flow div{background:#eff6ff;border:1px solid #bfdbfe;border-radius:12pt;padding:8pt;text-align:center;font-weight:800;color:#1e3a8a}.code{font-family:Consolas,'Courier New',monospace;background:#020617;color:#dbeafe;border-radius:12pt;padding:10pt;white-space:pre-wrap;font-size:6.1pt;line-height:1.22;overflow-wrap:anywhere}.code-mini{font-size:5pt;line-height:1.15}.toc a{display:block;text-decoration:none;border-bottom:1px solid #e2e8f0;padding:6pt 0;color:#0f172a}.tag{display:inline-block;border-radius:999pt;background:#e0f2fe;color:#075985;padding:3pt 7pt;font-weight:800;margin:2pt}.footer-note{position:fixed;bottom:.18in;left:.55in;right:.55in;color:#64748b;font-size:7pt;border-top:1px solid #e2e8f0;padding-top:4pt}.compact li{margin-bottom:3pt}li{margin-bottom:5pt}.two-col{columns:2;column-gap:18pt}.mini-head{font-size:9pt;text-transform:uppercase;letter-spacing:.12em;font-weight:900;color:#2563eb}.avoid{break-inside:avoid}.center{text-align:center}.pill{display:inline-block;background:#0f172a;color:white;border-radius:999pt;padding:4pt 8pt;font-size:8pt;font-weight:900}
+</style></head><body><section class="cover"><div><div class="kicker">Full Source Code Appendix</div><h1>Medication Fuzzy Logic System Code</h1><p class="subtitle">Complete code and CSV appendix for Jordan Christopher Lyles' Medication Dosage Adjustment System Using Fuzzy Logic.</p></div><div class="byline"><b>Jordan Christopher Lyles</b><br>Python, CSV, fuzzy logic, and exclusion criteria</div></section><section class="pagebreak"><h2>patient_profile.py</h2><pre class="code">import random
+import csv
+
+# Define the ranges for each category
+age_ranges = [(0, 2), (3, 8), (9, 14), (15, 21), (22, 35), (36, 65), (65, 100)]
+bmi_ranges = [(15, 18), (19, 24), (25, 29), (30, 34), (35, 50)]
+genders = [&quot;Female&quot;, &quot;Male&quot;]
+races = [&quot;Caucasian&quot;, &quot;African American&quot;, &quot;Hispanic&quot;, &quot;Asian&quot;, &quot;Native American&quot;]
+pain_durations = [(1, 7), (8, 14), (15, 21), (22, 28), (29, 35), (36, 42)]
+pain_severity = list(range(1, 11))
+sleep_hours = [(4, 6), (6, 8), (8, 10)]
+workout_days = [(1, 7)]
+water_intake = [(0, 30), (31, 64), (65, 100)]
+smoking_days = [(1, 7)]
+eating_frequency = [(1, 4)]
+caffeine_intake = [(0, 90), (91, 200), (201, 300), (301, 400)]
+
+# Generate 100 random datasets
+num_datasets = 100
+datasets = []
+
+for _ in range(num_datasets):
+    data = {
+        &quot;Age&quot;: random.randint(*random.choice(age_ranges)),
+        &quot;BMI&quot;: random.randint(*random.choice(bmi_ranges)),
+        &quot;Gender&quot;: random.choice(genders),
+        &quot;Race&quot;: random.choice(races),
+        &quot;Physical Pain - Duration&quot;: random.randint(*random.choice(pain_durations)), 
+        &quot;Physical Pain - Severity&quot;: random.choice(pain_severity), 
+    
+        &quot;Sleep Habits - Hours Per Day&quot;: random.randint(*random.choice(sleep_hours)),
+      
+        &quot;Lifestyle - Workout Days per Week&quot; : random.randint(*random.choice(workout_days)),
+        &quot;Lifestyle - Water Intake (ounces)&quot; : random.randint(*random.choice(water_intake)),
+        &quot;Lifestyle - Smoking Days per Week&quot; : random.randint(*random.choice(smoking_days)), 
+        &quot;Lifestyle - Eating Frequency per Day&quot; : random.randint(*random.choice(eating_frequency)),
+        &quot;Lifestyle - Caffeine Intake (mg)&quot; : random.randint(*random.choice(caffeine_intake))       
+        }
+
+    datasets.append(data)
+
+# Save directory
+output_directory = r&quot;C:\Users\lyles\Desktop\Outputs&quot;
+csv_filename = &quot;random_datasets.csv&quot;
+full_path = output_directory + &quot;\\&quot; + csv_filename
+
+# Write the datasets to a CSV file
+with open(full_path, mode=&#x27;w&#x27;, newline=&#x27;&#x27;) as file:
+    writer = csv.DictWriter(file, fieldnames=datasets[0].keys())
+
+    writer.writeheader()
+    for data in datasets:
+        writer.writerow(data)
+
+print(f&quot;Data has been saved to {full_path}&quot;)
+</pre></section><section class="pagebreak"><h2>NUCL570_final.py</h2><pre class="code code-mini">import numpy as np
+import skfuzzy as fuzz
+from skfuzzy import control as ctrl
+import random
+import matplotlib.pyplot as plt
+
+# Define medication data
+medication_data = {
+    &quot;Acetaminophen (Tylenol)&quot;: {&quot;Ease of Use Score&quot;: 90, &quot;Cost Score&quot;: 80, &quot;Accessibility Score&quot;: 85, &quot;Pain Treatment Score&quot;: 95, &quot;Adverse Effects Score&quot;: 70, &quot;Duration Score&quot;: 85, &quot;Affected Body Parts&quot;: [&quot;Lower Back&quot;, &quot;Headaches and Migraines&quot;]},
+    &quot;Ibuprofen (Advil)&quot;: {&quot;Ease of Use Score&quot;: 85, &quot;Cost Score&quot;: 85, &quot;Accessibility Score&quot;: 80, &quot;Pain Treatment Score&quot;: 90, &quot;Adverse Effects Score&quot;: 75, &quot;Duration Score&quot;: 80, &quot;Affected Body Parts&quot;: [&quot;Neck and Shoulder&quot;, &quot;Knee and Joint&quot;]},
+    &quot;Naproxen (Aleve)&quot;: {&quot;Ease of Use Score&quot;: 80, &quot;Cost Score&quot;: 85, &quot;Accessibility Score&quot;: 75, &quot;Pain Treatment Score&quot;: 90, &quot;Adverse Effects Score&quot;: 70, &quot;Duration Score&quot;: 85, &quot;Affected Body Parts&quot;: [&quot;Lower Back&quot;, &quot;Neck and Shoulder&quot;, &quot;Knee and Joint&quot;, &quot;Headaches and Migraines&quot;]},
+    &quot;Aspirin (Bayer)&quot;: {&quot;Ease of Use Score&quot;: 80, &quot;Cost Score&quot;: 80, &quot;Accessibility Score&quot;: 70, &quot;Pain Treatment Score&quot;: 85, &quot;Adverse Effects Score&quot;: 75, &quot;Duration Score&quot;: 85, &quot;Affected Body Parts&quot;: [&quot;General Pain&quot;, &quot;Backaches&quot;, &quot;Muscle Pain&quot;, &quot;Headaches and Migraines&quot;]},
+    &quot;Diclofenac (Voltaren)&quot;: {&quot;Ease of Use Score&quot;: 75, &quot;Cost Score&quot;: 70, &quot;Accessibility Score&quot;: 75, &quot;Pain Treatment Score&quot;: 85, &quot;Adverse Effects Score&quot;: 80, &quot;Duration Score&quot;: 75, &quot;Affected Body Parts&quot;: [&quot;Lower Back&quot;, &quot;Neck and Shoulder&quot;, &quot;Knee and Joint&quot;, &quot;Headaches and Migraines&quot;]},
+    &quot;Celecoxib (Celebrex)&quot;: {&quot;Ease of Use Score&quot;: 70, &quot;Cost Score&quot;: 75, &quot;Accessibility Score&quot;: 80, &quot;Pain Treatment Score&quot;: 85, &quot;Adverse Effects Score&quot;: 70, &quot;Duration Score&quot;: 80, &quot;Affected Body Parts&quot;: [&quot;Knee and Joint&quot;, &quot;Arthritis&quot;]},
+    &quot;Meloxicam (Mobic)&quot;: {&quot;Ease of Use Score&quot;: 75, &quot;Cost Score&quot;: 70, &quot;Accessibility Score&quot;: 75, &quot;Pain Treatment Score&quot;: 80, &quot;Adverse Effects Score&quot;: 70, &quot;Duration Score&quot;: 80, &quot;Affected Body Parts&quot;: [&quot;Lower Back&quot;, &quot;Neck and Shoulder&quot;, &quot;Knee and Joint&quot;, &quot;Headaches and Migraines&quot;]},
+    &quot;Tramadol (Ultram)&quot;: {&quot;Ease of Use Score&quot;: 70, &quot;Cost Score&quot;: 80, &quot;Accessibility Score&quot;: 70, &quot;Pain Treatment Score&quot;: 90, &quot;Adverse Effects Score&quot;: 80, &quot;Duration Score&quot;: 85, &quot;Affected Body Parts&quot;: [&quot;Lower Back&quot;]},
+    &quot;Cyclobenzaprine (Flexeril)&quot;: {&quot;Ease of Use Score&quot;: 65, &quot;Cost Score&quot;: 70, &quot;Accessibility Score&quot;: 75, &quot;Pain Treatment Score&quot;: 80, &quot;Adverse Effects Score&quot;: 75, &quot;Duration Score&quot;: 70, &quot;Affected Body Parts&quot;: [&quot;Neck and Shoulder&quot;, &quot;Knee and Joint&quot;]},
+    &quot;Methocarbamol (Robaxin)&quot;: {&quot;Ease of Use Score&quot;: 65, &quot;Cost Score&quot;: 70, &quot;Accessibility Score&quot;: 75, &quot;Pain Treatment Score&quot;: 80, &quot;Adverse Effects Score&quot;: 70, &quot;Duration Score&quot;: 70, &quot;Affected Body Parts&quot;: [&quot;Lower Back&quot;, &quot;Neck and Shoulder&quot;, &quot;Knee and Joint&quot;]},
+    &quot;Gabapentin (Neurontin)&quot;: {&quot;Ease of Use Score&quot;: 75, &quot;Cost Score&quot;: 80, &quot;Accessibility Score&quot;: 70, &quot;Pain Treatment Score&quot;: 75, &quot;Adverse Effects Score&quot;: 75, &quot;Duration Score&quot;: 85, &quot;Affected Body Parts&quot;: [&quot;Lower Back&quot;, &quot;Hands and Wrists&quot;, &quot;Knee and Joint&quot; ]},
+    &quot;Pregabalin (Lyrica)&quot;: {&quot;Ease of Use Score&quot;: 75, &quot;Cost Score&quot;: 85, &quot;Accessibility Score&quot;: 70, &quot;Pain Treatment Score&quot;: 75, &quot;Adverse Effects Score&quot;: 75, &quot;Duration Score&quot;: 85, &quot;Affected Body Parts&quot;: [&quot;Nerves&quot;]},
+    &quot;Oxycodone (Percocet)&quot;: {&quot;Ease of Use Score&quot;: 70, &quot;Cost Score&quot;: 75, &quot;Accessibility Score&quot;: 65, &quot;Pain Treatment Score&quot;: 90, &quot;Adverse Effects Score&quot;: 80, &quot;Duration Score&quot;: 75, &quot;Affected Body Parts&quot;: [&quot;Lower Back&quot;, &quot;Knee and Joints&quot;, &quot;Abdomen&quot;]},
+    &quot;Amitriptyline (Elavil)&quot;: {&quot;Ease of Use Score&quot;: 70, &quot;Cost Score&quot;: 80, &quot;Accessibility Score&quot;: 70, &quot;Pain Treatment Score&quot;: 75, &quot;Adverse Effects Score&quot;: 85, &quot;Duration Score&quot;: 80, &quot;Affected Body Parts&quot;: [&quot;Nerves&quot;, &quot;Headaches and Migraines&quot;, &quot;&quot;]},
+    &quot;Capsaicin cream&quot;: {&quot;Ease of Use Score&quot;: 80, &quot;Cost Score&quot;: 70, &quot;Accessibility Score&quot;: 70, &quot;Pain Treatment Score&quot;: 75, &quot;Adverse Effects Score&quot;: 75, &quot;Duration Score&quot;: 65, &quot;Affected Body Parts&quot;: [&quot;Knee and Joints&quot;, &quot;Muslces&quot;, &quot;Lower Back&quot;]},
+    &quot;Lidocaine patches&quot;: {&quot;Ease of Use Score&quot;: 75, &quot;Cost Score&quot;: 70, &quot;Accessibility Score&quot;: 80, &quot;Pain Treatment Score&quot;: 75, &quot;Adverse Effects Score&quot;: 70, &quot;Duration Score&quot;: 70, &quot;Affected Body Parts&quot;: [&quot;Lower Back&quot;, &quot;Joints&quot;, &quot;Muscles&quot;]},
+    &quot;Massage therapy&quot;: {&quot;Ease of Use Score&quot;: 90, &quot;Cost Score&quot;: 75, &quot;Accessibility Score&quot;: 70, &quot;Pain Treatment Score&quot;: 80, &quot;Adverse Effects Score&quot;: 70, &quot;Duration Score&quot;: 60, &quot;Affected Body Parts&quot;: [&quot;General Pain&quot;, &quot;Lower Back&quot;, &quot;Neck and Shoulders&quot;, &quot;Legs&quot;, &quot;Arms&quot;, &quot;Feet&quot;]},
+    &quot;Hyaluronic acid injections&quot;: {&quot;Ease of Use Score&quot;: 60, &quot;Cost Score&quot;: 50, &quot;Accessibility Score&quot;: 50, &quot;Pain Treatment Score&quot;: 70, &quot;Adverse Effects Score&quot;: 60, &quot;Duration Score&quot;: 70, &quot;Affected Body Parts&quot;: [&quot;Knee and Joint&quot;]},
+    &quot;Corticosteroid injections&quot;: {&quot;Ease of Use Score&quot;: 65, &quot;Cost Score&quot;: 60, &quot;Accessibility Score&quot;: 55, &quot;Pain Treatment Score&quot;: 75, &quot;Adverse Effects Score&quot;: 70, &quot;Duration Score&quot;: 75, &quot;Affected Body Parts&quot;: [&quot;Joint&quot;, &quot;Spine&quot;]},
+    &quot;Glucosamine and chondroitin supplements&quot;: {&quot;Ease of Use Score&quot;: 70, &quot;Cost Score&quot;: 80, &quot;Accessibility Score&quot;: 80, &quot;Pain Treatment Score&quot;: 65, &quot;Adverse Effects Score&quot;: 65, &quot;Duration Score&quot;: 80, &quot;Affected Body Parts&quot;: [&quot;Knee and Joint&quot;]},
+    &quot;Physical therapy exercises&quot;: {&quot;Ease of Use Score&quot;: 85, &quot;Cost Score&quot;: 70, &quot;Accessibility Score&quot;: 75, &quot;Pain Treatment Score&quot;: 80, &quot;Adverse Effects Score&quot;: 70, &quot;Duration Score&quot;: 85, &quot;Affected Body Parts&quot;: [&quot;Lower Back&quot;, &quot;Neck and Shoulder&quot;, &quot;Knee and Joint&quot;]},
+    &quot;Acupuncture&quot;: {&quot;Ease of Use Score&quot;: 75, &quot;Cost Score&quot;: 75, &quot;Accessibility Score&quot;: 70, &quot;Pain Treatment Score&quot;: 80, &quot;Adverse Effects Score&quot;: 70, &quot;Duration Score&quot;: 80, &quot;Affected Body Parts&quot;: [&quot;Lower Back&quot;, &quot;Neck and Shoulder&quot;, &quot;Headaches and Migraines&quot;, &quot;General Pain&quot;]},
+    &quot;Knee braces/supports&quot;: {&quot;Ease of Use Score&quot;: 80, &quot;Cost Score&quot;: 70, &quot;Accessibility Score&quot;: 85, &quot;Pain Treatment Score&quot;: 70, &quot;Adverse Effects Score&quot;: 65, &quot;Duration Score&quot;: 85, &quot;Affected Body Parts&quot;: [&quot;Knee and Joint&quot;]},
+    &quot;Excedrin&quot;: {&quot;Ease of Use Score&quot;: 70, &quot;Cost Score&quot;: 80, &quot;Accessibility Score&quot;: 75, &quot;Pain Treatment Score&quot;: 80, &quot;Adverse Effects Score&quot;: 75, &quot;Duration Score&quot;: 80, &quot;Affected Body Parts&quot;: [&quot;Headaches and Migraines&quot;]},
+    &quot;Sumatriptan (Imitrex)&quot;: {&quot;Ease of Use Score&quot;: 75, &quot;Cost Score&quot;: 80, &quot;Accessibility Score&quot;: 70, &quot;Pain Treatment Score&quot;: 85, &quot;Adverse Effects Score&quot;: 70, &quot;Duration Score&quot;: 85, &quot;Affected Body Parts&quot;: [&quot;Headaches and Migraines&quot;]},
+    &quot;Rizatriptan (Maxalt)&quot;: {&quot;Ease of Use Score&quot;: 75, &quot;Cost Score&quot;: 80, &quot;Accessibility Score&quot;: 70, &quot;Pain Treatment Score&quot;: 85, &quot;Adverse Effects Score&quot;: 70, &quot;Duration Score&quot;: 85, &quot;Affected Body Parts&quot;: [&quot;Headaches and Migraines&quot;]},
+    &quot;Diclofenac potassium (Cambia)&quot;: {&quot;Ease of Use Score&quot;: 75, &quot;Cost Score&quot;: 85, &quot;Accessibility Score&quot;: 70, &quot;Pain Treatment Score&quot;: 85, &quot;Adverse Effects Score&quot;: 70, &quot;Duration Score&quot;: 85, &quot;Affected Body Parts&quot;: [&quot;Headaches and Migraines&quot;, &quot;Muscles&quot;, &quot;Joints&quot;]},
+    &quot;Ergotamine derivatives&quot;: {&quot;Ease of Use Score&quot;: 65, &quot;Cost Score&quot;: 70, &quot;Accessibility Score&quot;: 70, &quot;Pain Treatment Score&quot;: 80, &quot;Adverse Effects Score&quot;: 75, &quot;Duration Score&quot;: 75, &quot;Affected Body Parts&quot;: [&quot;Headaches and Migraines&quot;]},
+    &quot;Butalbital-containing medications&quot;: {&quot;Ease of Use Score&quot;: 60, &quot;Cost Score&quot;: 75, &quot;Accessibility Score&quot;: 70, &quot;Pain Treatment Score&quot;: 75, &quot;Adverse Effects Score&quot;: 80, &quot;Duration Score&quot;: 70, &quot;Affected Body Parts&quot;: [&quot;Headaches and Migraines&quot;]},
+    &quot;Prochlorperazine (Compazine)&quot;: {&quot;Ease of Use Score&quot;: 70, &quot;Cost Score&quot;: 70, &quot;Accessibility Score&quot;: 75, &quot;Pain Treatment Score&quot;: 75, &quot;Adverse Effects Score&quot;: 80, &quot;Duration Score&quot;: 70, &quot;Affected Body Parts&quot;: [&quot;Headaches and Migraines&quot;]},
+    &quot;Metoclopramide (Reglan)&quot;: {&quot;Ease of Use Score&quot;: 70, &quot;Cost Score&quot;: 75, &quot;Accessibility Score&quot;: 75, &quot;Pain Treatment Score&quot;: 75, &quot;Adverse Effects Score&quot;: 80, &quot;Duration Score&quot;: 70, &quot;Affected Body Parts&quot;: [&quot;Headaches and Migraines&quot;]},
+    &quot;Dihydroergotamine (Migranal)&quot;: {&quot;Ease of Use Score&quot;: 65, &quot;Cost Score&quot;: 75, &quot;Accessibility Score&quot;: 70, &quot;Pain Treatment Score&quot;: 80, &quot;Adverse Effects Score&quot;: 75, &quot;Duration Score&quot;: 75, &quot;Affected Body Parts&quot;: [&quot;Headaches and Migraines&quot;]},
+    &quot;Botulinum toxin injections (Botox)&quot;: {&quot;Ease of Use Score&quot;: 60, &quot;Cost Score&quot;: 70, &quot;Accessibility Score&quot;: 65, &quot;Pain Treatment Score&quot;: 80, &quot;Adverse Effects Score&quot;: 75, &quot;Duration Score&quot;: 70, &quot;Affected Body Parts&quot;: [&quot;Headaches and Migraines&quot;]},
+    &quot;Amoxicillin&quot;: {&quot;Ease of Use Score&quot;: 80, &quot;Cost Score&quot;: 80, &quot;Accessibility Score&quot;: 90, &quot;Pain Treatment Score&quot;: 70, &quot;Adverse Effects Score&quot;: 70, &quot;Duration Score&quot;: 80, &quot;Affected Body Parts&quot;: [&quot;Respiratory Tract&quot;, &quot;Mouth&quot;]},
+    &quot;Clindamycin&quot;: {&quot;Ease of Use Score&quot;: 75, &quot;Cost Score&quot;: 85, &quot;Accessibility Score&quot;: 80, &quot;Pain Treatment Score&quot;: 70, &quot;Adverse Effects Score&quot;: 75, &quot;Duration Score&quot;: 85, &quot;Affected Body Parts&quot;: [&quot;Mouth&quot;, &quot;Bone&quot;, &quot;Joint&quot;, &quot;Respiratory Tract&quot;]},
+    &quot;Lidocaine gel&quot;: {&quot;Ease of Use Score&quot;: 80, &quot;Cost Score&quot;: 75, &quot;Accessibility Score&quot;: 85, &quot;Pain Treatment Score&quot;: 75, &quot;Adverse Effects Score&quot;: 70, &quot;Duration Score&quot;: 75, &quot;Affected Body Parts&quot;: [&quot;Mouth&quot;, &quot;Throat&quot;]},
+    &quot;Benzocaine (Orajel)&quot;: {&quot;Ease of Use Score&quot;: 85, &quot;Cost Score&quot;: 70, &quot;Accessibility Score&quot;: 85, &quot;Pain Treatment Score&quot;: 70, &quot;Adverse Effects Score&quot;: 75, &quot;Duration Score&quot;: 70, &quot;Affected Body Parts&quot;: [&quot;Mouth&quot;]},
+    &quot;Nonsteroidal anti-inflammatory gels like diclofenac (Voltaren) gel&quot;: {&quot;Ease of Use Score&quot;: 80, &quot;Cost Score&quot;: 75, &quot;Accessibility Score&quot;: 85, &quot;Pain Treatment Score&quot;: 75, &quot;Adverse Effects Score&quot;: 70, &quot;Duration Score&quot;: 75, &quot;Affected Body Parts&quot;: [&quot;Joint&quot;, &quot;Muscle&quot;, &quot;Back&quot;]},
+    &quot;Antimicrobial mouth rinses&quot;: {&quot;Ease of Use Score&quot;: 85, &quot;Cost Score&quot;: 80, &quot;Accessibility Score&quot;: 90, &quot;Pain Treatment Score&quot;: 70, &quot;Adverse Effects Score&quot;: 70, &quot;Duration Score&quot;: 80, &quot;Affected Body Parts&quot;: [&quot;Mouth&quot;, &quot;Throat&quot;]},
+    &quot;Chlorhexidine gluconate oral rinse&quot;: {&quot;Ease of Use Score&quot;: 85, &quot;Cost Score&quot;: 80, &quot;Accessibility Score&quot;: 90, &quot;Pain Treatment Score&quot;: 70, &quot;Adverse Effects Score&quot;: 70, &quot;Duration Score&quot;: 80, &quot;Affected Body Parts&quot;: [&quot;Mouth&quot;]},
+    &quot;Dental anesthetics like articaine or lidocaine injections&quot;: {&quot;Ease of Use Score&quot;: 75, &quot;Cost Score&quot;: 75, &quot;Accessibility Score&quot;: 85, &quot;Pain Treatment Score&quot;: 75, &quot;Adverse Effects Score&quot;: 70, &quot;Duration Score&quot;: 75, &quot;Affected Body Parts&quot;: [&quot;Neck and Shoulder&quot;, &quot;Knee and Joint&quot;]}
+}
+# Define fuzzy variables
+pain_treatment_effectiveness = ctrl.Antecedent(np.arange(0, 101, 1), &#x27;pain_treatment_effectiveness&#x27;)
+adverse_effects = ctrl.Antecedent(np.arange(0, 101, 1), &#x27;adverse_effects&#x27;)
+cost = ctrl.Antecedent(np.arange(0, 101, 1), &#x27;cost&#x27;)
+body_part_relevance = ctrl.Antecedent(np.arange(0, 101, 1), &#x27;body_part_relevance&#x27;)
+medication_desirability = ctrl.Consequent(np.arange(0, 101, 1), &#x27;medication_desirability&#x27;)
+
+# Define fuzzy sets for body part relevance
+body_part_relevance.automf(3)
+
+# Define fuzzy sets for pain treatment effectiveness, adverse effects, and cost
+pain_treatment_effectiveness.automf(3)
+adverse_effects.automf(3)
+cost.automf(3)
+
+# Define fuzzy sets for medication desirability
+medication_desirability[&#x27;low&#x27;] = fuzz.trimf(medication_desirability.universe, [0, 0, 50])
+medication_desirability[&#x27;medium&#x27;] = fuzz.trimf(medication_desirability.universe, [25, 50, 75])
+medication_desirability[&#x27;high&#x27;] = fuzz.trimf(medication_desirability.universe, [50, 100, 100])
+
+# Define fuzzy rules
+rules = []
+rules.append(ctrl.Rule(pain_treatment_effectiveness[&#x27;poor&#x27;] | adverse_effects[&#x27;poor&#x27;] | cost[&#x27;poor&#x27;], medication_desirability[&#x27;low&#x27;]))
+rules.append(ctrl.Rule(pain_treatment_effectiveness[&#x27;average&#x27;] | adverse_effects[&#x27;average&#x27;] | cost[&#x27;average&#x27;], medication_desirability[&#x27;medium&#x27;]))
+rules.append(ctrl.Rule(pain_treatment_effectiveness[&#x27;good&#x27;] | adverse_effects[&#x27;good&#x27;] | cost[&#x27;good&#x27;], medication_desirability[&#x27;high&#x27;]))
+
+# Create control system
+medication_selection_ctrl = ctrl.ControlSystem(rules)
+medication_selection = ctrl.ControlSystemSimulation(medication_selection_ctrl)
+
+# Set inputs for the control system
+medication_selection.input[&#x27;pain_treatment_effectiveness&#x27;] = 0  # Initialize with a value, it will be overwritten later
+medication_selection.input[&#x27;adverse_effects&#x27;] = 0  # Initialize with a value, it will be overwritten later
+medication_selection.input[&#x27;cost&#x27;] = 0  # Initialize with a value, it will be overwritten later
+
+# Select random medications
+random_medications = random.sample(medication_data.keys(), 3)
+
+# Define patient profiles
+patient_profiles = []
+for _ in range(1):
+    locations = [&quot;Lower Back&quot;, &quot;Neck and Shoulder&quot;, &quot;Knee and Joint&quot;, &quot;Headaches and Migraines&quot;, &quot;Dental&quot;]
+    pain_severity = random.randint(1, 10)
+    location = random.choice(locations)
+    patient_profiles.append({&quot;Location&quot;: location, &quot;Pain Severity&quot;: pain_severity})
+
+# Lists to store desirability scores for each medication
+desirability_scores = []
+
+# Compute output for each patient profile and each medication
+for profile in patient_profiles:
+    print(f&quot;\nPatient Profile: {profile}&quot;)
+    print(&quot;Comparison of Selected Medications with Fuzzy Logic:&quot;)
+    for medication in random_medications:
+        affected_body_parts = medication_data.get(medication, {}).get(&quot;Affected Body Parts&quot;)
+        if affected_body_parts and profile[&quot;Location&quot;] not in affected_body_parts:
+            print(f&quot;\nMedication: {medication}&quot;)
+            print(f&quot;This medication is not suitable for treating {profile[&#x27;Location&#x27;]}.&quot;)
+        else:
+            medication_selection.input[&#x27;pain_treatment_effectiveness&#x27;] = medication_data[medication][&quot;Pain Treatment Score&quot;]
+            medication_selection.input[&#x27;adverse_effects&#x27;] = medication_data[medication][&quot;Adverse Effects Score&quot;]
+            medication_selection.input[&#x27;cost&#x27;] = medication_data[medication][&quot;Cost Score&quot;]
+
+            # Compute output
+            medication_selection.compute()
+
+            # Determine medication desirability
+            desirability_score = medication_selection.output[&#x27;medication_desirability&#x27;] / 100  # Normalize to 0-1 range
+
+            print(f&quot;\nMedication: {medication}&quot;)
+            print(&quot;Pain Treatment Score:&quot;, medication_data[medication][&quot;Pain Treatment Score&quot;])
+            print(&quot;Adverse Effects Score:&quot;, medication_data[medication][&quot;Adverse Effects Score&quot;])
+            print(&quot;Cost Score:&quot;, medication_data[medication][&quot;Cost Score&quot;])
+            print(&quot;Desirability Score (Normalized):&quot;, desirability_score)
+
+            desirability_scores.append((medication, desirability_score))
+
+            # Print why certain medication is the best
+            if desirability_score &gt;= 0.5:
+                print(&quot;This medication is recommended due to its high desirability.&quot;)
+            else:
+                print(&quot;This medication is not recommended due to its low desirability.&quot;)
+
+# Sort medications by desirability scores
+sorted_medications = sorted(desirability_scores, key=lambda x: x[1], reverse=True)
+
+
+# Print the prompt displaying top 3 medications, an okay medicine, and the worst medicine
+print(&quot;\nTop Medications Based on Pain and Location:&quot;)
+for i in range(len(sorted_medications)):
+    print(f&quot;{i+1}. {sorted_medications[i][0]}&quot;)
+
+
+</pre></section><section class="pagebreak"><h2>medication_exclusion_criteria.csv</h2><pre class="code code-mini">Medication,Age,BMI,Gender,Race,Physical Pain Duration,Physical Pain Severity,Liver Disease,Reyes Syndrome Risk,Gastrointestinal Bleeding/Ulcers,Stomach Bleeding,Heart Attack,Stroke,High-concentration Cream,Sensitive Skin,Open Wounds,Skin Irritation History,High-concentration Patches,Allergic Reactions to Local Anesthetics,Kidney Disease,Blood Disorders,Narrow-angle Glaucoma,Urinary Retention,Seizures,Substance Abuse,Stomach Ulcers,Heart Rhythm Disorders,Respiratory Conditions,Duration (Pain),Duration (Fever),Strength (mg)
+Acetaminophen (Tylenol),&quot;(0, 2)&quot;,N/A,N/A,N/A,N/A,N/A,True,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,10,5,4000
+Aspirin (Bayer),&quot;(0, 12)&quot;,N/A,N/A,N/A,N/A,N/A,N/A,True,True,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,10,3,N/A
+Ibuprofen (Advil),&quot;(0, 0.5)&quot;,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,True,True,True,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,10,3,N/A
+Naproxen (Aleve),&quot;(0, 12)&quot;,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,10,3,N/A
+Capsaicin Cream,&quot;(0, 18)&quot;,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,True,True,True,True,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+Lidocaine Patches,&quot;(0, 12)&quot;,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,True,True,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+Phenazopyridine,&quot;(0, 12)&quot;,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,True,True,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+Diphenhydramine,&quot;(0, 6)&quot;,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,True,True,N/A,N/A,N/A,N/A,True,N/A,N/A,N/A
+Ketoprofen,&quot;(0, 18)&quot;,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,True,True,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,300
+Menthol (Bio Freeze),&quot;(0, 2)&quot;,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,True,N/A,True,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+Tramadol,&quot;(0, 12)&quot;,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,True,True,N/A,N/A,True,N/A,N/A,N/A
+Codeine,&quot;(0, 12)&quot;,N/A,N/A,N/A,N/A,N/A,True,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,True,N/A,N/A,True,N/A,N/A,N/A
+Celecoxib,&quot;(0, 18)&quot;,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,True,True,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,True,N/A,N/A,N/A,N/A,400
+Hydrocodone,&quot;(0, 18)&quot;,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,True,N/A,N/A,True,N/A,N/A,N/A
+Oxycodone,&quot;(0, 18)&quot;,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,True,N/A,N/A,True,N/A,N/A,N/A
+Morphine,&quot;(0, 18)&quot;,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,True,N/A,N/A,True,N/A,N/A,N/A
+Fentanyl,&quot;(0, 18)&quot;,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,True,N/A,N/A,True,N/A,N/A,N/A
+Buprenorphine,&quot;(0, 18)&quot;,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,True,N/A,N/A,True,N/A,N/A,N/A
+Methadone,&quot;(0, 18)&quot;,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,True,True,N/A,N/A,N/A
+Carfentanil,&quot;(0, 18)&quot;,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,True,N/A,N/A,True,N/A,N/A,N/A
+</pre></section></body></html>
