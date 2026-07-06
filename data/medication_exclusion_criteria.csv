@@ -1,0 +1,21 @@
+Medication,Age,BMI,Gender,Race,Physical Pain Duration,Physical Pain Severity,Liver Disease,Reyes Syndrome Risk,Gastrointestinal Bleeding/Ulcers,Stomach Bleeding,Heart Attack,Stroke,High-concentration Cream,Sensitive Skin,Open Wounds,Skin Irritation History,High-concentration Patches,Allergic Reactions to Local Anesthetics,Kidney Disease,Blood Disorders,Narrow-angle Glaucoma,Urinary Retention,Seizures,Substance Abuse,Stomach Ulcers,Heart Rhythm Disorders,Respiratory Conditions,Duration (Pain),Duration (Fever),Strength (mg)
+Acetaminophen (Tylenol),"(0, 2)",N/A,N/A,N/A,N/A,N/A,True,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,10,5,4000
+Aspirin (Bayer),"(0, 12)",N/A,N/A,N/A,N/A,N/A,N/A,True,True,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,10,3,N/A
+Ibuprofen (Advil),"(0, 0.5)",N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,True,True,True,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,10,3,N/A
+Naproxen (Aleve),"(0, 12)",N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,10,3,N/A
+Capsaicin Cream,"(0, 18)",N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,True,True,True,True,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+Lidocaine Patches,"(0, 12)",N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,True,True,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+Phenazopyridine,"(0, 12)",N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,True,True,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+Diphenhydramine,"(0, 6)",N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,True,True,N/A,N/A,N/A,N/A,True,N/A,N/A,N/A
+Ketoprofen,"(0, 18)",N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,True,True,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,300
+Menthol (Bio Freeze),"(0, 2)",N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,True,N/A,True,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+Tramadol,"(0, 12)",N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,True,True,N/A,N/A,True,N/A,N/A,N/A
+Codeine,"(0, 12)",N/A,N/A,N/A,N/A,N/A,True,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,True,N/A,N/A,True,N/A,N/A,N/A
+Celecoxib,"(0, 18)",N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,True,True,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,True,N/A,N/A,N/A,N/A,400
+Hydrocodone,"(0, 18)",N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,True,N/A,N/A,True,N/A,N/A,N/A
+Oxycodone,"(0, 18)",N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,True,N/A,N/A,True,N/A,N/A,N/A
+Morphine,"(0, 18)",N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,True,N/A,N/A,True,N/A,N/A,N/A
+Fentanyl,"(0, 18)",N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,True,N/A,N/A,True,N/A,N/A,N/A
+Buprenorphine,"(0, 18)",N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,True,N/A,N/A,True,N/A,N/A,N/A
+Methadone,"(0, 18)",N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,True,True,N/A,N/A,N/A
+Carfentanil,"(0, 18)",N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,True,N/A,N/A,True,N/A,N/A,N/A
